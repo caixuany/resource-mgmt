@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(express.static("./public"));
 
 const { addResource, viewResources, editResource, deleteResource } = require('./utils/ResourceUtil')
-app.post('/add-resources', addResource);
+app.post('/add-resource', addResource);
 app.get ('/view-resources', viewResources);
 app.put('/edit-resource/:id', editResource);
 app.delete('/delete-resource/:id', deleteResource);
