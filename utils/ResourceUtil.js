@@ -36,7 +36,7 @@ async function addResource(req, res) {
             return res.status(201).json(updatedResources);
         }
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        return res.status(500).json({ message: Validation error! });
     }
 }
  
