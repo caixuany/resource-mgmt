@@ -56,4 +56,33 @@ describe('Resource Management Frontend', () => {
     // Verify that the resource has been deleted
     cy.get('#tableContent').contains('Updated Resource').should('not.exist');
   });
+  it("should be unable to add resource - empty fields", () => {
+    cy.visit(baseUrl);
+    // Open the modal and fill in the form
+    cy.get('button[data-target="#resourceModal"]').click();
+    // Click the add resource button
+    cy.get("button.btn-primary").contains("Add New Resource").click();
+    // Assert that the error message is displayed with the correct text
+    cy.get('#message')
+      .should('be.visible') // Ensure the message is visible
+      .and('have.text', 'All fields are required!'); // Check the error message text
+    // Assert that the message has the "text-danger" class
+    cy.get('#message')
+      .should('have.class', 'text-danger');
+  });
+  it("should be unable to add resource - short description", () => {
+    cy.visit(baseUrl);
+    // Open the modal and fill in the form
+    cy.get('button[data-target="#resourceModal"]').click();
+    cy.get("#name").type("Test Resource", { force: true });
+    cy.get("#location").type("Test Location", { force: true });
+    cy.get("#description").type("Short", { force: true });
+    cy.get("#owner").type("test@example.com", { force: true });
+    // Click the add resource button
+    cy.get("button.btn-primary").contains("Add New Resource").click();
+    //Verify the validation error
+    cy.get("#message")
+      .should("exist")
+      .and("include.text", "Unable to add resource!");
+  });
 });
