@@ -3,7 +3,10 @@ services:
    build:
      context: .
      dockerfile: Dockerfile 
-   image: caixuany/rms-docker-img:latest
+   image: yapcaixuan/rms-docker-img:v5
    container_name: rms-docker-container
    ports:
      - "8000:5050"
+
+
+     
